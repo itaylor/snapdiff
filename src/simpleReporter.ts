@@ -1,7 +1,7 @@
 import { ReporterArgs, ReporterResult, ImageDiff, ImageAddDelete, TestAddDelete, DiffOutput } from './types';
 import { writeFileSync } from 'fs';
 
-export default function simpleReporter(reporterArgs: ReporterArgs): void {
+export default async function simpleReporter(reporterArgs: ReporterArgs) {
 
   const {
     folderPath,
