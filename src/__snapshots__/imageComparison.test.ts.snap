@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add a test and an image to an existing test 1`] = `
+Object {
+  "addedImages": Array [
+    Object {
+      "context": Object {
+        "file": "snapdiff-tests/example.test.js",
+        "fullTitle": "basic test super rad",
+        "title": "super rad",
+      },
+      "image": "hijklmn",
+    },
+  ],
+  "addedTests": Array [
+    Object {
+      "context": Object {
+        "file": "snapdiff-tests/example.test.js",
+        "fullTitle": "basic test something else",
+        "title": "something else",
+      },
+      "images": Array [
+        "opqrstu",
+        "vwxyz01",
+      ],
+    },
+  ],
+  "imageDiffs": Array [],
+  "removedImages": Array [],
+  "removedTests": Array [],
+  "time": Any<Number>,
+}
+`;
+
+exports[`Remove a test and an image from an existing test 1`] = `
+Object {
+  "addedImages": Array [],
+  "addedTests": Array [],
+  "imageDiffs": Array [],
+  "removedImages": Array [
+    Object {
+      "context": Object {
+        "file": "snapdiff-tests/example.test.js",
+        "fullTitle": "basic test super rad",
+        "title": "super rad",
+      },
+      "image": "hijklmn",
+    },
+  ],
+  "removedTests": Array [
+    Object {
+      "context": Object {
+        "file": "snapdiff-tests/example.test.js",
+        "fullTitle": "basic test something else",
+        "title": "something else",
+      },
+      "images": Array [
+        "opqrstu",
+        "vwxyz01",
+      ],
+    },
+  ],
+  "time": Any<Number>,
+}
+`;

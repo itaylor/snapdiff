@@ -1,0 +1,25 @@
+{
+  "basic test super rad": {
+    "images": [
+      "012345",
+      "abcdefg",
+      "hijklmn"
+    ],
+    "context": {
+      "title": "super rad",
+      "fullTitle": "basic test super rad",
+      "file": "snapdiff-tests/example.test.js"
+    }
+  },
+  "basic test something else": {
+    "images": [
+      "opqrstu",
+      "vwxyz01"
+    ],
+    "context": {
+      "title": "something else",
+      "fullTitle": "basic test something else",
+      "file": "snapdiff-tests/example.test.js"
+    }
+  }
+}

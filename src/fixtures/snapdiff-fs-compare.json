@@ -1,0 +1,9 @@
+{
+  "bucketProvider": {
+    "name": "folder",
+    "options": { "folderPath": "src/fixtures" }
+  },
+  "bucketName": "fake-compare",
+  "localFolder": "./snaps"
+}
+ 

@@ -1,0 +1,76 @@
+{
+  "basic test \"before all\" hook": {
+    "images": [
+      "40c01a8cae5408c57050e8f0eaad3f0840293d044589da2ca5aab2b3e654014f"
+    ],
+    "context": {
+      "title": "\"before all\" hook",
+      "fullTitle": "basic test \"before all\" hook",
+      "file": "snapdiff-tests/example.test.js"
+    }
+  },
+  "basic test \"before each\" hook": {
+    "images": [
+      "40c01a8cae5408c57050e8f0eaad3f0840293d044589da2ca5aab2b3e654014f",
+      "40c01a8cae5408c57050e8f0eaad3f0840293d044589da2ca5aab2b3e654014f",
+      "40c01a8cae5408c57050e8f0eaad3f0840293d044589da2ca5aab2b3e654014f"
+    ],
+    "context": {
+      "title": "\"before each\" hook",
+      "fullTitle": "basic test \"before each\" hook",
+      "file": "snapdiff-tests/example.test.js"
+    }
+  },
+  "basic test super rad": {
+    "images": [
+      "40c01a8cae5408c57050e8f0eaad3f0840293d044589da2ca5aab2b3e654014f"
+    ],
+    "context": {
+      "title": "super rad",
+      "fullTitle": "basic test super rad",
+      "file": "snapdiff-tests/example.test.js"
+    }
+  },
+  "basic test \"after each\" hook": {
+    "images": [
+      "40c01a8cae5408c57050e8f0eaad3f0840293d044589da2ca5aab2b3e654014f",
+      "40c01a8cae5408c57050e8f0eaad3f0840293d044589da2ca5aab2b3e654014f",
+      "ded98784356bc982a77c1d455b64616b9fd3f0f90f1ca81f5b0d605cb4a343c1"
+    ],
+    "context": {
+      "title": "\"after each\" hook",
+      "fullTitle": "basic test \"after each\" hook",
+      "file": "snapdiff-tests/example.test.js"
+    }
+  },
+  "basic test another test": {
+    "images": [
+      "40c01a8cae5408c57050e8f0eaad3f0840293d044589da2ca5aab2b3e654014f"
+    ],
+    "context": {
+      "title": "another test",
+      "fullTitle": "basic test another test",
+      "file": "snapdiff-tests/example.test.js"
+    }
+  },
+  "basic test rando always different test": {
+    "images": [
+      "ded98784356bc982a77c1d455b64616b9fd3f0f90f1ca81f5b0d605cb4a343c1"
+    ],
+    "context": {
+      "title": "rando always different test",
+      "fullTitle": "basic test rando always different test",
+      "file": "snapdiff-tests/example.test.js"
+    }
+  },
+  "basic test \"after all\" hook": {
+    "images": [
+      "ded98784356bc982a77c1d455b64616b9fd3f0f90f1ca81f5b0d605cb4a343c1"
+    ],
+    "context": {
+      "title": "\"after all\" hook",
+      "fullTitle": "basic test \"after all\" hook",
+      "file": "snapdiff-tests/example.test.js"
+    }
+  }
+}

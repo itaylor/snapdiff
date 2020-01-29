@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`compare 1`] = `
+"☎️	 Fetching remote target basictest metadata from folder
+🖥	 Computing diffs between local and remote
+☎️	 Fetching images for diffs from folder
+📸	 Creating image diffs
+
+Comparison results:
+Changed images: 3,
+Added tests:    0,
+Added images:   0,
+Removed tests:  0,
+Removed images: 0,
+
+{ default: [Function: simpleReporter] }
+✅	 Wrote report to ./snaps/report-local}
+"
+`;
+
+exports[`compare 2`] = `
+Array [
+  "images",
+  "meta",
+]
+`;
+
+exports[`push 1`] = `
+Array [
+  "images",
+  "meta",
+  "report-local",
+]
+`;
+
+exports[`push 2`] = `
+Array [
+  "0e258451efe907513e7057964413c2a4ee8ab3fa15fac7dd4f8a18348fdfce5d.png",
+  "40c01a8cae5408c57050e8f0eaad3f0840293d044589da2ca5aab2b3e654014f.png",
+  "45f1c15062739f1ec3a56258a41784b73d61e137056699cd54a1e4a44d107043.png",
+  "4c3c5ea4f98a81b392c5de5ec7ab107580358f70db11ad34ab7422c8fa8c8b5a.png",
+  "5f4f7c698c4316118b03028571cc2fb2f66c077c0330106a6128d74060f08489.png",
+  "799c1e0ca76a7107f9e6f14b40fa16e183d530a9a21a47a9e57f15d646ebc2a8.png",
+  "8583cd1c56add747831bd82b91df9cf97ff72a23ad99897cca7c90d9ace358c5.png",
+  "89932332a31f2ca37e5516ce45f33b69bf244bcb548973b9bfe6b632654653fb.png",
+  "acef24664a419f921ceb8c02bfc66970e87e837cc6c31dd558554f783697b514.png",
+  "basictest.json",
+  "c07baa9598d4e1cdece1735cd3f15b2574bc93db808906e9547e0abf60824dee.png",
+]
+`;

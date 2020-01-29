@@ -1,0 +1,9 @@
+{
+  "bucketProvider": {
+    "name": "gcs",
+    "options": { "keyFilename": "../../snapdiff-gcs.json" }
+  },
+  "bucketName": "mkto-snapdiff-test",
+  "localFolder": "./images"
+}
+ 
