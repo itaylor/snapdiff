@@ -13,7 +13,7 @@ Added images:   0,
 Removed tests:  0,
 Removed images: 0,
 
-{ default: [Function: simpleReporter] }
+{ default: [AsyncFunction: simpleReporter] }
 ✅	 Wrote report to ./snaps/report-local}
 "
 `;
