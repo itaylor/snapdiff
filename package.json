@@ -1,12 +1,13 @@
 {
   "name": "snapdiff",
-  "version": "0.0.2",
-  "description": "Tools to snaps screenshot images with puppeteer and compare them against remote versions.",
+  "version": "0.0.1",
+  "description": "Tools to snap screenshot images with puppeteer and compare them against remote versions",
   "main": "build/snapdiff.js",
   "bin": "build/cli.js",
   "author": "ian.b.taylor@gmail.com",
   "license": "MIT",
   "private": false,
+  "files": [ "build/**" ],
   "scripts": {
     "build": "tsc",
     "test": "mocha --require ts-node/register --require mocha-ui-jest --ui jest **/*.test.js **/*.test.ts"

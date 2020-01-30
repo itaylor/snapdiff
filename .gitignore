@@ -1,3 +1,4 @@
 node_modules
 snaps/
 build
+src/fixtures/fake-push

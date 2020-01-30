@@ -66,7 +66,7 @@ Removed images: ${diffs.removedImages.length},
     console.log(reporterInstance);
     const realReporter = reporterInstance.default || reporterInstance;
     await realReporter(reporterArgs);
-    console.log(`✅\t Wrote report to ${config.localFolder}/report-local}`)
+    console.log(`✅\t Wrote report to ${config.localFolder}/report-local`)
   }
 }));
 
