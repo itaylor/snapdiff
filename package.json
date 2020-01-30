@@ -1,6 +1,6 @@
 {
   "name": "snapdiff",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Tools to snap screenshot images with puppeteer and compare them against remote versions",
   "main": "build/snapdiff.js",
   "bin": "build/cli.js",
