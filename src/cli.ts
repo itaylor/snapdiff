@@ -23,24 +23,24 @@ program.command('compare [target]')
 
     const bp = getBucketProvider(config.bucketProvider.name, config.bucketProvider.options);
 
-    console.log(`☎️\t Fetching remote target ${target} metadata from ${config.bucketProvider.name}`);
+    console.log(`☎️  Fetching remote target ${target} metadata from ${config.bucketProvider.name}`);
     await bp.downloadFile(config.bucketName, `meta/${target}.json`,`${config.localFolder}/meta/${target}.json`);
     const remoteCache = readJSON<SnapshotCache>(`${config.localFolder}/meta/${target}.json`);
     const localCache = readJSON<SnapshotCache>(`${config.localFolder}/meta/local-snapdiff.json`);
   
-    console.log(`🖥\t Computing diffs between local and remote`);
+    console.log(`🖥  Computing diffs between local and remote`);
   
     const diffs = imageComparison(localCache, remoteCache);
     if (diffs.imageDiffs.length) {
-      console.log(`☎️\t Fetching images for diffs from ${config.bucketProvider.name}`);
+      console.log(`☎️  Fetching images for diffs from ${config.bucketProvider.name}`);
       await fetchImagesForDiffs(diffs.imageDiffs.map(id => id.expected), bp, config);
-      console.log(`📸\t Creating image diffs`);
+      console.log(`📸  Creating image diffs`);
       generateDiffImages(diffs.imageDiffs, config);
     }
     write(`${config.localFolder}/meta/diffs.json`, JSON.stringify(diffs, null, 2));
 
     if (diffs.imageDiffs.length === 0 && diffs.addedImages.length === 0 && diffs.addedTests.length === 0 && diffs.removedImages.length === 0 && diffs.removedTests.length === 0) {
-      console.log(`💯\t No image differences found!`);
+      console.log(`💯  No image differences found!`);
     } else {
       console.log(`
 Comparison results:
@@ -66,7 +66,7 @@ Removed images: ${diffs.removedImages.length},
     console.log(reporterInstance);
     const realReporter = reporterInstance.default || reporterInstance;
     await realReporter(reporterArgs);
-    console.log(`✅\t Wrote report to ${config.localFolder}/report-local`)
+    console.log(`✅  Wrote report to ${config.localFolder}/report-local`)
   }
 }));
 
@@ -76,13 +76,13 @@ program.command('push <target>')
   .action(wrapAsyncErrorHandling( async (target: string, options: { configFile?: string }) => {
     const configFileLoc = resolve(options.configFile || 'snapdiff.json');
     const config = loadConfig(configFileLoc);
-    if (!existsSync(resolve(`${config.localFolder}/report-local`))) {
-      console.log(`💣\t No report info found, run 'compare' command before pushing`);
-      process.exit(1);
+    const hasReport = existsSync(resolve(`${config.localFolder}/report-local`));
+    const hasDiffs = existsSync(resolve(`${config.localFolder}/meta/diffs.json`));
+    if (!hasReport || !hasDiffs) {
+      console.log(`⚠️  No report or no diffs found, you may want to run the 'compare' command first, to push reports along with images`);
     }
     const bp = getBucketProvider(config.bucketProvider.name, config.bucketProvider.options);
     const local = read(`${config.localFolder}/meta/local-snapdiff.json`);
-    const diffs = readJSON<DiffOutput>(`${config.localFolder}/meta/diffs.json`);
     write(`${config.localFolder}/meta/${target}.json`, local);
 
     const localCache: SnapshotCache = <SnapshotCache>JSON.parse(local);
@@ -93,18 +93,23 @@ program.command('push <target>')
         imageUploadPromises.push(bp.uploadFile(config.bucketName, `${config.localFolder}/images/${img}.png`, `images/${img}.png`));
       });
     });
-    diffs.imageDiffs.map((imageDiff) => {
-      const diffPath = `images/${imageDiff.actual}-${imageDiff.expected}.png`;
-      imageUploadPromises.push(bp.uploadFile(config.bucketName, `${config.localFolder}/${diffPath}`, diffPath));
-    });
-    console.log(`☎️\t Pushing build ${target} with ${imageUploadPromises.length} images to ${config.bucketProvider.name}`);
+    if (hasDiffs) {
+      const diffs = readJSON<DiffOutput>(`${config.localFolder}/meta/diffs.json`); 
+      diffs.imageDiffs.map((imageDiff) => {
+        const diffPath = `images/${imageDiff.actual}-${imageDiff.expected}.png`;
+        imageUploadPromises.push(bp.uploadFile(config.bucketName, `${config.localFolder}/${diffPath}`, diffPath));
+      });
+    } 
+    console.log(`☎️  Pushing build ${target} with ${imageUploadPromises.length} images to ${config.bucketProvider.name}`);
     await Promise.all([ 
       bp.uploadFile(config.bucketName, `${config.localFolder}/meta/${target}.json`, `meta/${target}.json`),
       ...imageUploadPromises,
     ]);
-    console.log(`☎️\t Uploading report contents to ${config.bucketProvider.name}`);
-    await Promise.all(uploadAllInFolder(bp, config, `${config.localFolder}/report-local`));
-    console.log(`💯\t Push complete!`);
+    if (hasReport) {
+      console.log(`☎️  Uploading report contents to ${config.bucketProvider.name}`);
+      await Promise.all(uploadAllInFolder(bp, config, `${config.localFolder}/report-local`));  
+    }
+    console.log(`💯  Push complete!`);
   }))
 
 function wrapAsyncErrorHandling(fn: (...args: any) => Promise<any>) {
@@ -166,7 +171,7 @@ function uploadAllInFolder(bp: BucketProvider, config: Config, folder: string): 
   console.log(resolvedFolder, files);
   const destinationPrefix = relative(config.localFolder, folder);
   return files.map((f) => {
-    console.log(`uploading file from: ${resolvedFolder}/${f} to: ${destinationPrefix}/${f}`);
+    // console.log(`uploading file from: ${resolvedFolder}/${f} to: ${destinationPrefix}/${f}`);
     return bp.uploadFile(config.bucketName, `${resolvedFolder}/${f}`, `${destinationPrefix}/${f}`);
   });
 }

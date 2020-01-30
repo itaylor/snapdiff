@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`compare 1`] = `
-"☎️	 Fetching remote target basictest metadata from folder
-🖥	 Computing diffs between local and remote
-☎️	 Fetching images for diffs from folder
-📸	 Creating image diffs
+"☎️  Fetching remote target basictest metadata from folder
+🖥  Computing diffs between local and remote
+☎️  Fetching images for diffs from folder
+📸  Creating image diffs
 
 Comparison results:
 Changed images: 3,
@@ -14,7 +14,7 @@ Removed tests:  0,
 Removed images: 0,
 
 { default: [AsyncFunction: simpleReporter] }
-✅	 Wrote report to ./snaps/report-local
+✅  Wrote report to ./snaps/report-local
 "
 `;
 
