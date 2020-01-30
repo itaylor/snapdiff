@@ -8,7 +8,8 @@
   "license": "MIT",
   "private": false,
   "files": [
-    "build/**"
+    "build/**",
+    "src/**/*.ts"
   ],
   "scripts": {
     "build": "tsc",

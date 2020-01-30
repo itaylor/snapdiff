@@ -6,12 +6,23 @@ import { writeFileSync } from 'fs';
 import { getTestContext } from './mochaAdapter';
 import { recordSnapshot, getSnapshots } from './recordSnapshot';
 import { Options,Context } from './types';
+import mkdirp from 'mkdirp';
 
 let config: Options = {
   folderPath: process.cwd() + '/snaps',
 };
 
+function init() {
+  if (needsInit) {
+    mkdirp.sync(`${config.folderPath}/images/`);
+    mkdirp.sync(`${config.folderPath}/meta/`);
+  }
+  needsInit = false;
+}
+let needsInit: boolean = true;
+
 Page.prototype.snap = async function snap(selector?: string) : Promise<IPage> {
+  init();
   let scr;
   if (selector) {
     const e = await this.$(selector);
@@ -36,9 +47,11 @@ Page.prototype.hideElem = async function hideElem(selector: string) : Promise<IP
 
 export function setConfig(_config: Options) {
   config = _config;
+  needsInit = true;
 }
 
 export function writeSnapCache() {
+  init();
   const snaps = getSnapshots();
   writeFileSync(`${config.folderPath}/meta/local-snapdiff.json`, JSON.stringify(snaps, null, 2), { encoding: 'utf8' });
 }
