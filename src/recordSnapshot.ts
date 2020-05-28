@@ -1,4 +1,4 @@
-import { SnapshotCache, RecordSnapshotOptions, Context } from './types';
+import { SnapshotCache, RecordSnapshotOptions } from './types';
 
 const snapshots:SnapshotCache = {}
 export function recordSnapshot({

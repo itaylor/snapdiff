@@ -42,7 +42,7 @@ describe('basic test', () => {
     await page.snap();
   })
   test('rando always different test', async () => {
-    await page.evaluate(() => { 
+    await page.evaluate(() => {
       function rando(min = 50, max = 200) {
         return Math.round(min + (Math.random() * (max - min)));
       }
@@ -70,11 +70,11 @@ function waitForDevServerToStart() {
         res();
       }
     });
-  
+
     testAppProcess.stderr.on('data', (data) => {
       console.error(`stderr: ${data}`);
     });
-  
+
     testAppProcess.on('close', (code) => {
       rej(new Error('Closed dev server'));
     });

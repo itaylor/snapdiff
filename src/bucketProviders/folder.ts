@@ -10,6 +10,10 @@ export class FolderBucketProvider implements BucketProvider {
     this.rootFolder = resolve((<FolderBucketOptions> options).folderPath);
   }
 
+  getBaseUrl() {
+    return this.rootFolder;
+  }
+
   async uploadFile(bucketName: string, filePath: string, destination?: string): Promise<BucketProviderResponse> {
     if (!bucketName || !filePath) {
       throw new Error('Invalid parameters');
