@@ -4,11 +4,17 @@ import { resolve, basename } from 'path';
 
 export class GCSBucketProvider implements BucketProvider {
   private storage: Storage;
+  private baseUrl: string;
   constructor (options: BucketOptions) {
     const keyFilename = resolve((<GCSBucketOptions> options).keyFilename);
     this.storage = new Storage({
       keyFilename
     });
+    this.baseUrl = `https://storage.cloud.google.com/${(<GCSBucketOptions> options).folderName}`
+  }
+
+  getBaseUrl () {
+    return this.baseUrl;
   }
 
   async uploadFile(bucketName: string, filePath: string, destination?: string): Promise<BucketProviderResponse> {
